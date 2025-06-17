@@ -3,13 +3,13 @@ services:
     name: fastapi-backend
     runtime: python
     plan: free
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "uvicorn chatbot.app:app --host 0.0.0.0 --port 10000"
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn chatbot.app:app --host 0.0.0.0 --port 8000
 
   - type: web
     name: streamlit-frontend
     runtime: python
     plan: free
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "streamlit run streamlit_app.py --server.port 10001 --server.address=0.0.0.0"
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run streamlit_app.py --server.port 8501
     
