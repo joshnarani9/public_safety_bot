@@ -12,4 +12,6 @@ services:
     plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: streamlit run streamlit_app.py --server.port 8501
-    
+    envVars:
+      - key: FASTAPI_URL
+        value: https://fastapi-backend-hhd3.onrender.com

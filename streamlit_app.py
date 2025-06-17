@@ -1,6 +1,10 @@
 import streamlit as st
 import requests
 import pandas as pd
+import os
+
+# 🔐 Load FastAPI backend URL from environment variable
+FASTAPI_URL = os.getenv("FASTAPI_URL", "http://localhost:8000")  # fallback for local dev
 
 # Page config
 st.set_page_config(page_title="🚨 Public Safety Bot", layout="wide")
@@ -32,7 +36,7 @@ with tabs[0]:
             with st.spinner("Analyzing your message..."):
                 try:
                     response = requests.post(
-                        "http://localhost:8000/chat",
+                        f"{FASTAPI_URL}/chat",
                         json={"message": user_message, "user_id": user_id}
                     )
                     if response.status_code == 200:
@@ -54,7 +58,7 @@ with tabs[0]:
 with tabs[1]:
     st.markdown("### 📋 Your Past Hazard Reports")
     try:
-        reports = requests.get(f"http://localhost:8000/reports/{user_id}")
+        reports = requests.get(f"{FASTAPI_URL}/reports/{user_id}")
         if reports.status_code == 200:
             data = reports.json()
             if data:
@@ -76,7 +80,7 @@ with tabs[2]:
     if st.button("🔁 Update Location"):
         try:
             res = requests.post(
-                "http://localhost:8000/location",
+                f"{FASTAPI_URL}/location",
                 json={"location": new_location, "user_id": user_id}
             )
             if res.status_code == 200:
@@ -85,7 +89,6 @@ with tabs[2]:
                 st.error("❌ Could not update location.")
         except Exception as e:
             st.error(f"💥 Error: {str(e)}")
-
 
 # Footer
 st.markdown("---")
