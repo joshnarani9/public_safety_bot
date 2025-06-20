@@ -5,7 +5,7 @@ import os
 
 # 🔐 Load FastAPI backend URL from environment variable
 FASTAPI_URL = os.getenv("FASTAPI_URL", "http://localhost:8000")  # fallback for local dev
-
+st.write(FASTAPI_URL)
 # Page config
 st.set_page_config(page_title="🚨 Public Safety Bot", layout="wide")
 st.markdown("<h1 style='text-align: center; color: red;'>🚨 Indy Public Safety Chatbot</h1>", unsafe_allow_html=True)
