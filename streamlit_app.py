@@ -3,14 +3,15 @@ import requests
 import pandas as pd
 import os
 
-# 🔐 Load FastAPI backend URL from environment variable
-FASTAPI_URL = os.getenv("FASTAPI_URL", "http://localhost:8000")  # fallback for local dev
-st.write(FASTAPI_URL)
+
 # Page config
 st.set_page_config(page_title="🚨 Public Safety Bot", layout="wide")
-st.markdown("<h1 style='text-align: center; color: red;'>🚨 Indy Public Safety Chatbot</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: red;'>🚨 Indiana Public Safety Chatbot</h1>", unsafe_allow_html=True)
 st.markdown("<p style='text-align: center;'>Chat with the bot to report hazards, get alerts, or ask for help.</p>", unsafe_allow_html=True)
 st.markdown("---")
+
+# 🔐 Load FastAPI backend URL from environment variable
+FASTAPI_URL = os.getenv("FASTAPI_URL", "http://localhost:8000")  # fallback for local dev
 
 # Session state for user message
 if "user_message" not in st.session_state:
@@ -18,13 +19,13 @@ if "user_message" not in st.session_state:
 
 # 🎯 User ID (shared across tabs)
 with st.sidebar:
-    st.image("https://img.icons8.com/color/96/public-safety.png", width=80)
+    st.image("img.png", width=80)
     user_id = st.text_input("👤 Enter Your ID", value="user123")
     st.markdown("---")
     st.info("Use the same ID across features to sync your reports.")
 
 # Tabs
-tabs = st.tabs(["💬 Chat with Bot", "📋 My Hazard Reports", "📍 Location Update if required"])
+tabs = st.tabs(["💬 Chat with Bot", "📋 My Hazard Reports", "📍 Location Update"])
 
 # 💬 Chat Tab
 with tabs[0]:
