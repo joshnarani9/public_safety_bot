@@ -107,11 +107,11 @@ Now analyze this user input:
             parsed = json.loads(json_str)
             return (
                 parsed.get("intent", "unknown"),
-                parsed.get("response", "Sorry, I couldn’t understand that."),
+                parsed.get("response", "Sorry, I built only for reporting hazards."),
                 parsed.get("data")
             )
         else:
-            return "unknown", "🤖 I'm not sure how to help with that. Please rephrase or try again.", None
+            return "unknown", "🤖 I'm not sure how to help with that. I built only for reporting hazards", None
     except Exception as e:
         return "unknown", "⚠️ I'm facing technical issues. Please try again later.", None
 
